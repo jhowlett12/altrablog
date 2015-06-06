@@ -70,7 +70,7 @@ function altrablog_get_athletes_list_from_post( $post_id ) {
 		$output .= get_term_link( $term, 'athlete' );
 		$output .= '">';
 		$output .= esc_html( $term->name );
-		$output .= '</li>';
+		$output .= '</a></li>';
 	}
 
 	// Close out the list.
