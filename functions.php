@@ -95,3 +95,44 @@ function altrablog_get_athlete_from_post( $post_id ) {
 	return  '<a href="' . get_term_link( $term[0], 'athlete' ) . '">' . esc_html( $term[0]->name ) . '</a>';
 
 }
+
+/**
+ * Get more runners as a list in ano ondered list.
+ * @return string HTML of the runners.
+ */
+function get_more_runners_stories() {
+
+	// Setup the args for the query.
+	$args = array(
+		'tag'            => 'runners-story',
+		'posts_per_page' => 4,
+	);
+
+	// The query
+	$the_query = new WP_Query( $args );
+
+	// The Loop
+	if ( $the_query->have_posts() ) :
+
+		echo '<ul>';
+
+		while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+
+			<li>
+				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+					<?php the_post_thumbnail( 'thumbnail', array( 'class' => 'aligncenter' ) ); ?>
+				</a>
+				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+					<?php the_title(); ?>
+				</a>
+			</li>
+
+		<?php endwhile;
+
+		echo '</ul>';
+
+	endif;
+
+	/* Restore original Post Data */
+	wp_reset_postdata();
+}

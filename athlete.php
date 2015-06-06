@@ -119,20 +119,7 @@ Template Name: Athlete
 
 		<div class="container">
 
-			<?php $args = array('tag_slug__and' => array('runners-story')); ?>
-			<?php $postslist = get_posts( $args ); ?>
-			<ul>
-			<?php foreach ( $postslist as $post ) : setup_postdata( $post ); ?>
-				<li>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-						<?php the_post_thumbnail( 'thumbnail', array('class' => 'aligncenter')); ?>
-					</a>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-						<?php the_title(); ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-			</ul>
+			<?php get_more_runners_stories(); ?>
 
 		</div>
 
