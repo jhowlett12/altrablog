@@ -8,9 +8,9 @@
  * Register the taxonomy of athletes.
  * @return void
  */
-function register_athlete_taxonomy() {
+function altrablog_register_athlete_taxonomy() {
 
-	register_taxonomy( 'athlete', array( 'post' ), array(
+	register_taxonomy( 'altrablog_register_athlete_taxonomy', array( 'post' ), array(
 			'hierarchical'      => false,
 			'public'            => true,
 			'show_in_nav_menus' => true,
@@ -46,5 +46,4 @@ function register_athlete_taxonomy() {
 }
 
 // On init, register the taxonomy.
-add_action( 'init', 'kik_init' );
-
+add_action( 'init', 'altrablog_register_athlete_taxonomy' );
