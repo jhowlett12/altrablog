@@ -79,3 +79,19 @@ function altrablog_get_athletes_list_from_post( $post_id ) {
 	return $output;
 
 }
+
+
+/**
+ * Get a single athlete, and build a link to the term page.
+ * @param  int    $post_id Post ID that athlete is attached to
+ * @return string          HTML with links to the tag pages.
+ */
+function altrablog_get_athlete_from_post( $post_id ) {
+
+	// Get all the athletes associated with the post.
+	$term = wp_get_object_terms( $post_id, 'athlete' );
+
+	// Return the first one.
+	return  '<a href="' . get_term_link( $term[0], 'athlete' ) . '">' . esc_html( $term[0]->name ) . '</a>';
+
+}
