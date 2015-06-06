@@ -47,3 +47,35 @@ function altrablog_register_athlete_taxonomy() {
 
 // On init, register the taxonomy.
 add_action( 'init', 'altrablog_register_athlete_taxonomy' );
+
+
+/**
+ * Get an unordered list of atheletes.
+ * @param  int    $post_id Post ID that athlete is attached to
+ * @return string          HTML of an unordered list, with links to the tag pages.
+ */
+function altrablog_get_athletes_list_from_post( $post_id ) {
+
+	// Get all the athletes associated with the post.
+	$terms = wp_get_object_terms( $post_id, 'athlete' );
+
+	// Start the output of an onrdered list.
+	$output = '<ul class="athelete-links">';
+
+	// Loop through each term.
+	foreach ( $terms as $term ) {
+
+		$output .= '<li class="athlete-link><a href="';
+		// Link
+		$output .= get_term_link( $term, 'athlete' );
+		$output .= '">';
+		$output .= esc_html( $term->name );
+		$output .= '</li>';
+	}
+
+	// Close out the list.
+	$output .= '</ul>';
+
+	return $output;
+
+}
